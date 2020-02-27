@@ -1,0 +1,13 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "page-swiper-client-side-solution",
+    "id": "1dbdc6ac-573a-401a-aebd-ba8af7c9af01",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "isDomainIsolated": false
+  },
+  "paths": {
+    "zippedPackage": "solution/page-swiper.sppkg"
+  }
+}
