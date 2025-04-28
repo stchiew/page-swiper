@@ -5,7 +5,36 @@
     "id": "1dbdc6ac-573a-401a-aebd-ba8af7c9af01",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
-    "isDomainIsolated": false
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.20.0"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "page swiper"
+      },
+      "longDescription": {
+        "default": "carousel webpart"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "page-swiper PageSwiperWebPart Feature",
+        "description": "The feature that activates PageSwiper WebPart from the page-swiper solution.",
+        "id": "04a9898c-d338-45eb-bf6d-60bcef8db9e9",
+        "version": "1.0.0.0",
+        "componentIds": [
+          "04a9898c-d338-45eb-bf6d-60bcef8db9e9"
+        ]
+      }
+    ]
   },
   "paths": {
     "zippedPackage": "solution/page-swiper.sppkg"

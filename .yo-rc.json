@@ -1,11 +1,20 @@
 {
   "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
     "isCreatingSolution": true,
+    "nodeVersion": "18.19.0",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.24.0"
+    },
     "environment": "spo",
-    "version": "1.10.0",
+    "version": "1.20.0",
     "libraryName": "page-swiper",
     "libraryId": "1dbdc6ac-573a-401a-aebd-ba8af7c9af01",
     "packageManager": "npm",
+    "solutionName": "page-swiper",
+    "solutionShortDescription": "carousel webpart",
+    "skipFeatureDeployment": true,
     "isDomainIsolated": false,
     "componentType": "webpart"
   }
