@@ -39,14 +39,7 @@ jobs:
       # signin > M365 tenant w/ Entra ID federated identity
       - name: Sign in to M365 tenant
         run: |
-          m365 login
-              --authType ${AUTH_TYPE} \
-              --appId ${APP_ID} \
-              --tenant ${TENANT_ID}
-        env:
-          AUTH_TYPE: federated
-          APP_ID: ${{ secrets.M365_CICD_APP_CLIENTID }}
-          TENANT_ID: ${{ secrets.M365_CICD_APP_TENANTID }}
+          m365 login --authType federated --appId ${{ secrets.M365_CICD_APP_CLIENTID }} --tenant ${{ secrets.M365_CICD_APP_TENANTID }}
       - name: CLI for Microsoft 365 Deploy App
         uses: pnp/action-cli-deploy@v4.0.0
         with:
