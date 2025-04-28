@@ -41,8 +41,8 @@ jobs:
         run: |
           m365 login
               --authType ${AUTH_TYPE} \
-              --clientId ${APP_ID} \
-              --tenantId ${TENANT_ID}
+              --appId ${APP_ID} \
+              --tenant ${TENANT_ID}
         env:
           AUTH_TYPE: federated
           APP_ID: ${{ secrets.M365_CICD_APP_CLIENTID }}
