@@ -1,0 +1,57 @@
+name: Deploy Solution page-swiper
+on:
+  workflow_dispatch:
+    inputs:
+      purpose:
+        description: "purpose of run"
+        default: ""
+        required: true
+        type: string
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - ".github/workflows/**.yml"
+permissions:
+  # req: Azure login for user-defined managed identity
+  id-token: write
+  # req: Azure login for user-defined managed identity
+  contents: read
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.0.0
+      - name: Use Node.js
+        uses: actions/setup-node@v3.8.1
+        with:
+          node-version: 16.15.1
+      - name: Run npm ci
+        run: npm ci
+      - name: Bundle & Package
+        run: |
+          gulp bundle --ship
+          gulp package-solution --ship
+      - name: ⬇️  Install CLI for M365
+        run: |
+          npm install @pnp/cli-microsoft365@10.5.0 -g
+      # signin > M365 tenant w/ Entra ID federated identity
+      - name: Sign in to M365 tenant
+        run: |
+          m365 login
+              --authType ${AUTH_TYPE} \
+              --clientId ${APP_ID} \
+              --tenantId ${TENANT_ID}
+        env:
+          AUTH_TYPE: federated
+          APP_ID: ${{ secrets.M365_CICD_APP_CLIENTID }}
+          TENANT_ID: ${{ secrets.M365_CICD_APP_TENANTID }}
+      - name: CLI for Microsoft 365 Deploy App
+        uses: pnp/action-cli-deploy@v4.0.0
+        with:
+          APP_FILE_PATH: sharepoint/solution/page-swiper.sppkg
+          SKIP_FEATURE_DEPLOYMENT: false
+          OVERWRITE: true
+          SCOPE: sitecollection
+          SITE_COLLECTION_URL: ${{ vars.APP_SITE_CATALOG }}

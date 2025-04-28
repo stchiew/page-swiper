@@ -11,7 +11,7 @@ export default function PageSwiper(props: IPageSwiperProps): JSX.Element {
     userDisplayName
   } = props;
 
-  const InitialMessgae:string = "Hello World!.";
+  const InitialMessgae:string = "Using federated auth.";
 
   return (
     
