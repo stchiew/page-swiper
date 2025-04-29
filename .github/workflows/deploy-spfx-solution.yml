@@ -33,13 +33,35 @@ jobs:
         run: |
           gulp bundle --ship
           gulp package-solution --ship
-      - name: ⬇️  Install CLI for M365
-        run: |
-          npm install @pnp/cli-microsoft365@10.5.0 -g
+      #- name: ⬇️  Install CLI for M365
+      #  run: |
+      #    npm install @pnp/cli-microsoft365@10.5.0 -g
       # signin > M365 tenant w/ Entra ID federated identity
-      - name: Sign in to M365 tenant
-        run: |
-          m365 login --authType federatedIdentity --appId ${{ secrets.M365_CICD_APP_CLIENTID }} --tenant ${{ secrets.M365_CICD_APP_TENANTID }}
+      #- name: Sign in to M365 tenant
+      #  run: |
+      #    m365 login --authType federatedIdentity --appId ${{ secrets.M365_CICD_APP_CLIENTID }} --tenant ${{ secrets.M365_CICD_APP_TENANTID }}
+      #            
+      - name: CLI for Microsoft 365 Login
+  # You may pin to the exact commit or the version.
+  # uses: pnp/action-cli-login@a492f43dadce84d7405561fd7d2fbfaf34a1a84c
+        uses: pnp/action-cli-login@v3.1.0
+        with:
+    # Username (upn) of the admin
+    #      ADMIN_USERNAME: # optional
+    # Password of the admin
+    #      ADMIN_PASSWORD: # optional
+    # Base64-encoded string with certificate private key
+    #      CERTIFICATE_ENCODED: # optional
+    # Password for the certificate
+    #      CERTIFICATE_PASSWORD: # optional
+    # App ID of the Entra application to use for authentication. If not specified, use the app specified in the 'CLIMICROSOFT365_ENTRAAPPID' environment variable.
+          
+          APP_ID: ${{ secrets.M365_CICD_APP_CLIENTID }}
+    # ID of the tenant from which accounts should be able to authenticate. Use common or organization if the app is multitenant. If not specified, use the tenant specified in the 'CLIMICROSOFT365_TENANT' environment variable. If the environment variable is not defined, use 'common' as the tenant identifier
+          TENANT: ${{ secrets.M365_CICD_APP_TENANTID }}
+    # When specified, installs the requested version or tag of the CLI
+    #      CLI_VERSION: # optional
+          
       - name: CLI for Microsoft 365 Deploy App
         uses: pnp/action-cli-deploy@v4.0.0
         with:
